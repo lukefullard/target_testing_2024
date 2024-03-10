@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periphyton Targets Viewer</title>
+    <script>
+        window.onload = function() {
+            // Event listener for the UPR number dropdown
+            document.getElementById('number-select').addEventListener('change', updateFrames);
+            // Event listener for the TN/TP dropdown
+            document.getElementById('type-select').addEventListener('change', updateFrames);
+			
+			// Call updateFrames to set the initial state of the iframes
+			updateFrames(); // This will use the default selected values to update the iframes
+
+            function updateFrames() {
+			    var githubaddy = "https://lukefullard.github.io/target_testing_2024/target_maps/mitigations/" 
+                var number = document.getElementById('number-select').value;
+                var type = document.getElementById('type-select').value;
+                var baseFileNameA = type + '_interventions_2023_UPR' + number;
+                var baseFileNameB = type + '_interventions_2024_UPR' + number;
+                var baseFileNameC = type + '_interventions_OnePlan_UPR' + number;
+                var fileNameA = githubaddy + baseFileNameA + '.html';
+                var fileNameB = githubaddy + baseFileNameB + '.html';
+                var fileNameC = githubaddy + baseFileNameC + '.html';
+				var titleA = type + ' - 2023 reductions required';
+				var titleB = type + ' - 2024 reductions required';
+				var titleC = type + ' - OnePlan reductions required';
+                document.getElementById('frame1A').src = fileNameA;
+                document.getElementById('frame2B').src = fileNameB;
+                document.getElementById('frame3C').src = fileNameC;
+				document.getElementById('title1A').textContent = titleA;
+				document.getElementById('title2B').textContent = titleB;
+				document.getElementById('title3C').textContent = titleC;
+            }
+        };
+    </script>
+    <style>
+        body {
+            text-align: center; /* Centers the dropdown and iframes */
+            font-size: larger; /* Makes the dropdown text larger */
+        }
+        iframe {
+            width: 90%;
+            height: 500px;
+            border: none;
+            margin-bottom: 10px; /* Adds a small gap between each iframe */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px; /* Adds a small gap between the containers */
+        }
+        .title {
+            font-size: 24px; /* Large font size for the title */
+            font-weight: bold; /* Bold font weight for the title */
+            margin-bottom: 5px; /* Adds a small gap between the title and the iframe */
+        }
+        select {
+            font-size: 20px; /* Larger font size for the dropdown */
+            margin-bottom: 20px; /* Adds a small gap below the dropdown */
+        }
+    </style>
+</head>
+<body>
+    <label for="number-select" style="font-size: 20px;">Select UPR:</label>
+    <select id="number-select">
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+    </select>
+
+    <!-- New dropdown for selecting TN or TP -->
+    <label for="type-select" style="font-size: 20px;">Select Type:</label>
+    <select id="type-select">
+        <option value="TN">TN</option>
+        <option value="TP">TP</option>
+    </select>
+
+    <div class="container">
+    <div id="title1A" class="title">TN - 2023 Mitigation Effectiveness</div>
+    <iframe id="frame1A"></iframe>
+	</div>
+	<div class="container">
+    <div id="title2B" class="title">TN - 2024 Mitigation Effectiveness</div>
+    <iframe id="frame2B"></iframe>
+	</div>
+	<div class="container">
+    <div id="title3C" class="title">TN - OnePlan Mitigation Effectiveness</div>
+    <iframe id="frame3C"></iframe>
+	</div>
+</body>
+</html>

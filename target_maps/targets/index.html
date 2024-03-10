@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periphyton Targets Viewer</title>
+    <script>
+        window.onload = function() {
+			
+			// Call updateFrames to set the initial state of the iframes
+			updateFrames(); // This will use the default selected values to update the iframes
+             
+            function updateFrames() {
+			    var githubaddy = "https://lukefullard.github.io/target_testing_2024/target_maps/targets/" 
+                var baseFileNameA = 'periphyton_targets_2023_UPR20';
+                var baseFileNameB = 'periphyton_targets_2024_UPR20';
+                var baseFileNameC = 'periphyton_targets_OnePlan_UPR20';
+                var fileNameA = githubaddy + baseFileNameA + '.html';
+                var fileNameB = githubaddy + baseFileNameB + '.html';
+                var fileNameC = githubaddy + baseFileNameC + '.html';
+				var titleA = '2023 Periphyton Targets';
+				var titleB = '2024 Periphyton Targets';
+				var titleC = 'OnePlan Periphyton Targets';
+                document.getElementById('frame1A').src = fileNameA;
+                document.getElementById('frame2B').src = fileNameB;
+                document.getElementById('frame3C').src = fileNameC;
+				document.getElementById('title1A').textContent = titleA;
+				document.getElementById('title2B').textContent = titleB;
+				document.getElementById('title3C').textContent = titleC;
+            }
+        };
+    </script>
+    <style>
+        body {
+            text-align: center; /* Centers the dropdown and iframes */
+            font-size: larger; /* Makes the dropdown text larger */
+        }
+        iframe {
+            width: 90%;
+            height: 500px;
+            border: none;
+            margin-bottom: 10px; /* Adds a small gap between each iframe */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px; /* Adds a small gap between the containers */
+        }
+        .title {
+            font-size: 24px; /* Large font size for the title */
+            font-weight: bold; /* Bold font weight for the title */
+            margin-bottom: 5px; /* Adds a small gap between the title and the iframe */
+        }
+        select {
+            font-size: 20px; /* Larger font size for the dropdown */
+            margin-bottom: 20px; /* Adds a small gap below the dropdown */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title">Periphyton Targets 2023</div>
+        <iframe id="frame1A"></iframe>
+    </div>
+    <div class="container">
+        <div class="title">Periphyton Targets 2024</div>
+        <iframe id="frame2B"></iframe>
+    </div>
+    <div class="container">
+        <div class="title">Periphyton Targets OnePlan</div>
+        <iframe id="frame3C"></iframe>
+    </div>
+</body>
+</html>
