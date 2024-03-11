@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Subzone summary</title>
+<style>
+  body {
+    text-align: center; /* Center align the content */
+    margin: 0;
+    padding-top: 20px; /* Add some padding at the top */
+  }
+  select {
+    width: 200px; /* Make dropdowns larger */
+    height: 40px; /* Make dropdowns larger */
+    margin-bottom: 20px; /* Add space below dropdowns */
+  }
+  iframe {
+    width: 80%; /* Adjust width as needed */
+    height: 600px; /* Adjust height as needed */
+    margin-bottom: 20px; /* Add space between iframes */
+    border: none; /* Optional: removes the iframe border */
+  }
+</style>
+<script>
+window.onload = function() {
+  loadIframes(); // Load the iframes when the page loads
+};
+
+function loadIframes() {
+  var type = document.getElementById('typeSelect').value;
+  var action = document.getElementById('actionSelect').value;
+  var increments = [20, 25, 30, 50]; // Define the increments you want
+  var baseurl = "https://lukefullard.github.io/target_testing_2024/target_maps/summary/";
+  increments.forEach(function(i) {
+    document.getElementById('iframe' + i).src = baseurl+type + '_' + i + '_' + action + '.html';
+  });
+}
+</script>
+</head>
+<body>
+
+<!-- Dropdown for Type -->
+<select id="typeSelect" onchange="loadIframes()">
+  <option value="TN" selected>TN</option>
+  <option value="TP">TP</option>
+</select>
+
+<!-- Dropdown for Action -->
+<select id="actionSelect" onchange="loadIframes()">
+  <option value="reductions" selected>Reductions</option>
+  <option value="mitigations">Mitigations</option>
+</select>
+
+<!-- Iframes -->
+<iframe id="iframe20"></iframe>
+<iframe id="iframe25"></iframe>
+<iframe id="iframe30"></iframe>
+<iframe id="iframe50"></iframe>
+
+</body>
+</html>
